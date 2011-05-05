@@ -1,26 +1,36 @@
-<!--
-FilmCow Application is based on
-Rob Spectre's FailBlog Application licensed
-under the GPLv2.
--->
 <?xml version="1.0"?>
 <window type="window" id="14000">
 <onload lang="python"><![CDATA[
 import tracker
+import functions
 
-items = mc.GetDirectory('rss://gdata.youtube.com/feeds/api/users/secretagentbob/uploads?alt=rss')
-for item in items:
-	item.SetThumbnail(item.GetThumbnail().replace('3.jpg','0.jpg'))
-	mc.GetActiveWindow().GetList(111).SetItems(items)
+config = mc.GetApp().GetLocalConfig()
+runtime = config.GetValue("runtime")
+
+if (runtime == "first"):
+	mc.ShowDialogWait()
+	items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/users/secretagentbob/uploads?v=2&orderby=updated&alt=rss')
+	config.SetValue("show", 'recentuploads')
+	functions.setMenu()
+	functions.thumbReplace(items)
+	#functions.setFocus(items)
+	config.SetValue("runtime", 'notFirst')
+	mc.HideDialogWait()
+else:
+	pass
+
+mc.ShowDialogWait()
+functions.setMenu()
+mc.HideDialogWait()
 
 myTracker = tracker.Tracker("MO-3541558-10")
 myTracker.trackView("home")
 ]]></onload>
-	<defaultcontrol always="true">111</defaultcontrol>
+	<defaultcontrol always="true">100</defaultcontrol>
 	<allowoverlay>yes</allowoverlay>
 	<controls>
 		<control type="group">
-			<control type="group" id="110">
+			<control type="group">
 				<visible>true</visible>
 				<control type="image">
 					<posx>0</posx>
@@ -29,11 +39,199 @@ myTracker.trackView("home")
 					<height>720</height>
 					<texture>filmcow-bg.png</texture>
 				</control>
-				<control type="wraplist" id="111">
+				<control type="group" id="200">
+					<control type="togglebutton" id="1200">
+						<posx>35</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>1201</onright>
+						<onup>-</onup>
+						<onleft>-</onleft>
+						<visible>true</visible>
+						<label>Recent Uploads</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/users/secretagentbob/uploads?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'recentuploads')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>
+					<control type="togglebutton" id="1201">
+						<posx>238.33</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>1202</onright>
+						<onup>-</onup>
+						<onleft>1200</onleft>
+						<visible>true</visible>
+						<label>Charlie the Unicorn</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/playlists/94555807213983FB?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'charlietheunicorn')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>
+					<control type="togglebutton" id="1202">
+						<posx>441.66</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>1203</onright>
+						<onup>-</onup>
+						<onleft>1201</onleft>
+						<visible>true</visible>
+						<label>charlie teh unicron</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/playlists/772AD75DE1C94F98?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'charlietehunicron')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>
+					<control type="togglebutton" id="1203">
+						<posx>644.99</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>1204</onright>
+						<onup>-</onup>
+						<onleft>1202</onleft>
+						<visible>true</visible>
+						<label>Llamas with Hats</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/playlists/BE8C175E9FAAA34A?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'llamaswithhats')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>
+					<control type="togglebutton" id="1204">
+						<posx>848.32</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>1205</onright>
+						<onup>-</onup>
+						<onleft>1203</onleft>
+						<visible>true</visible>
+						<label>Animated Shorts</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/playlists/4842A15D035C45B1?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'animatedshorts')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>
+					<control type="togglebutton" id="1205">
+						<posx>1051.65</posx>
+						<posy>185</posy>
+						<height>33</height>
+						<width>193.33</width>
+						<ondown>100</ondown>
+						<onright>-</onright>
+						<onup>-</onup>
+						<onleft>1204</onleft>
+						<visible>true</visible>
+						<label>Live Action Shorts</label>
+						<font>font18b</font>
+						<textcolor>white</textcolor>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texturefocus>filmcow-hover.png</texturefocus>
+						<texturenofocus>filmcow-hover.png</texturenofocus>
+						<alttexturefocus>filmcow-hover.png</alttexturefocus>
+						<alttexturenofocus>filmcow-active2.png</alttexturenofocus>
+						<usealttexture>-</usealttexture>
+						<onclick lang="python"><![CDATA[
+mc.ShowDialogWait()
+items = mc.GetDirectory('http://gdata.youtube.com/feeds/api/playlists/EF6AD3FD1C6E39E7?v=2&alt=rss')
+config.Reset("show")
+config.SetValue("show", 'liveactionshorts')
+functions.setMenu()
+functions.thumbReplace(items)
+#functions.setFocus(items)
+mc.HideDialogWait()
+]]></onclick>
+					</control>					
+				</control>
+				<control type="wraplist" id="100">
 					<animation type="Conditional" condition="Window.IsVisible(DialogProgress.xml)">
 						<effect type="fade" start="100" end="20" time="200"/>
 					</animation>
-					<onup>112</onup>
+					<onup>200</onup>
 					<posx>63</posx>
 					<posy>280</posy>
 					<width>1150</width>
@@ -103,7 +301,7 @@ myTracker.trackView("home")
 				<font>title36b</font>
 				<align>center</align>
 				<aligny>top</aligny>
-				<label>$INFO[Container(111).ListItem.Label]</label>
+				<label>$INFO[Container(100).ListItem.Label]</label>
 				<textcolor>white</textcolor>
 				<wrapmultiline>true</wrapmultiline>
 			</control>

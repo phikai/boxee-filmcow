@@ -2,7 +2,7 @@
 <app>
 	<id>com.boxee.thinkonezero.filmcow</id>
 	<name>FilmCow Videos</name>
-	<version>0.93</version>
+	<version>0.104</version>
 	<description>FilmCow - The World's Leading Authority on Hydrodynamics</description>
 	<thumb>http://boxee.thinkonezero.com/filmcow/build/im/thumb_200x200.png</thumb>
 	<repositoryid>com.boxee.thinkonezero</repositoryid>
@@ -12,7 +12,7 @@
 	<copyright>ThinkOneZero.com</copyright>
 	<email>boxee@thinkonezero.com</email>
 	<type>skin</type>
-	<startWindow>14000</startWindow>
+	<startWindow>launch</startWindow>
 	<platform>all</platform>
 	<minversion>0.9.23</minversion>
 </app>
