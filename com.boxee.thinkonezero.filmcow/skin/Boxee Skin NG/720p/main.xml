@@ -1,0 +1,112 @@
+<!--
+FilmCow Application is based on
+Rob Spectre's FailBlog Application licensed
+under the GPLv2.
+-->
+<?xml version="1.0"?>
+<window type="window" id="14000">
+<onload lang="python"><![CDATA[
+import tracker
+
+items = mc.GetDirectory('rss://gdata.youtube.com/feeds/api/users/secretagentbob/uploads?alt=rss')
+for item in items:
+	item.SetThumbnail(item.GetThumbnail().replace('3.jpg','0.jpg'))
+	mc.GetActiveWindow().GetList(111).SetItems(items)
+
+myTracker = tracker.Tracker("MO-3541558-10")
+myTracker.trackView("home")
+]]></onload>
+	<defaultcontrol always="true">111</defaultcontrol>
+	<allowoverlay>yes</allowoverlay>
+	<controls>
+		<control type="group">
+			<control type="group" id="110">
+				<visible>true</visible>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>1280</width>
+					<height>720</height>
+					<texture>filmcow-bg.png</texture>
+				</control>
+				<control type="wraplist" id="111">
+					<animation type="Conditional" condition="Window.IsVisible(DialogProgress.xml)">
+						<effect type="fade" start="100" end="20" time="200"/>
+					</animation>
+					<onup>112</onup>
+					<posx>63</posx>
+					<posy>280</posy>
+					<width>1150</width>
+					<height>400</height>
+					<height>300</height>
+					<scrolltime>200</scrolltime>
+					<preloaditems>3</preloaditems>
+					<orientation>horizontal</orientation>
+					<focusposition>2</focusposition>
+					<itemlayout width="230" height="300">
+							<control type="image">
+                                    <posx>0</posx>
+                                    <posy>20</posy>
+                                    <width>227</width>
+                                    <height>170</height>
+                                    <info>ListItem.Thumb</info>
+                            </control>
+                            <control type="label">
+                                    <posx>5</posx>
+                                    <posy>0</posy>
+                                    <width>195</width>
+                                    <height>32</height>
+                                    <font>font16</font>
+                                    <align>left</align>
+                                    <aligny>top</aligny>
+                                    <label>Views: $INFO[ListItem.property(viewCount)]</label>
+                                    <textcolor>white</textcolor>
+                                    <wrapmultiline>true</wrapmultiline>
+                            </control>
+                    </itemlayout>
+					<focusedlayout width="230" height="300">
+							<control type="image">
+                                    <posx>0</posx>
+                                    <posy>20</posy>
+                                    <width>227</width>
+                                    <height>170</height>
+                                    <info>ListItem.Thumb</info>
+                                    <animation effect="zoom" end="150,150" center="auto" time="140">Focus</animation>
+    								<animation effect="zoom" start="150,150" end="100,100" center="auto" time="140">Unfocus</animation>
+                            </control>
+                            <control type="label">
+                                    <posx>5</posx>
+                                    <posy>0</posy>
+                                    <width>195</width>
+                                    <height>32</height>
+                                    <font>font16</font>
+                                    <align>left</align>
+                                    <aligny>top</aligny>
+                                    <label>Views: $INFO[ListItem.property(viewCount)]</label>
+                                    <textcolor>white</textcolor>
+                                    <wrapmultiline>true</wrapmultiline>
+									<animation effect="slide" end="-30,-42" center="auto" time="140">Focus</animation>
+                                    <animation effect="slide" start="-30,-42" center="auto" time="140">Unfocus</animation>
+                            </control>
+                    </focusedlayout>
+					<content type="directory">
+						<onclick lang="python">
+						</onclick>
+					</content>
+				</control>
+			</control>
+			<control type="label">
+				<posx>285</posx>
+				<posy>550</posy>
+				<width>700</width>
+				<height>100</height>
+				<font>title36b</font>
+				<align>center</align>
+				<aligny>top</aligny>
+				<label>$INFO[Container(111).ListItem.Label]</label>
+				<textcolor>white</textcolor>
+				<wrapmultiline>true</wrapmultiline>
+			</control>
+		</control>
+	</controls>
+</window>

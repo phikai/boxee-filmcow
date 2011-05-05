@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<app>
+	<id>com.boxee.thinkonezero.filmcow</id>
+	<name>FilmCow Videos</name>
+	<version>0.93</version>
+	<description>FilmCow - The World's Leading Authority on Hydrodynamics</description>
+	<thumb>http://boxee.thinkonezero.com/filmcow/build/im/thumb_200x200.png</thumb>
+	<repositoryid>com.boxee.thinkonezero</repositoryid>
+	<repository>http://repository.boxee.thinkonezero.com</repository>
+	<media>video</media>
+	<author>Think One Zero</author>
+	<copyright>ThinkOneZero.com</copyright>
+	<email>boxee@thinkonezero.com</email>
+	<type>skin</type>
+	<startWindow>14000</startWindow>
+	<platform>all</platform>
+	<minversion>0.9.23</minversion>
+</app>
